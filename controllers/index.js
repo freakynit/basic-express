@@ -4,8 +4,8 @@ var express=require('express'),
 
 router.use('/users',require('./users'));
 
-//entry point for all controller
-router.get('/',function(){
+//home page
+router.get('/',function(req,res){
     res.send('This is main controller');
 });
 

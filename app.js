@@ -10,6 +10,8 @@ app.set('view engine', 'jade')
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+//middelware to load controllers
 app.use(require('./controllers'))
 
 app.listen(port, function() {
