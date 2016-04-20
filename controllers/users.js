@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    user=require('../model/users');
+    UserList=require('../model/users'),
+    user=new UserList();
 
 
 // return all users
@@ -8,12 +9,14 @@ router.get('/',function(req,res){
   res.send(user.all());
 });
 
-// return user by id
-router.get('/:id',function(req,res){
-  user.get(req.param.id,function(err,users){
-    res.send(users);
-  })
+//save user
+router.get('/save',function(req,res){
+  user.save('aaa');
+  res.send('User saved');
 });
 
+user.on("saved-user", function (user) {
+    console.log("saved: " + user);
+});
 
 module.exports = router;

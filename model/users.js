@@ -1,11 +1,13 @@
 // User Model
-
+var util         = require("util");
+var EventEmitter = require("events").EventEmitter;
 
 // Dummy users data genearted from www.json-generator.com
 // dummy data can be accessed from www.json-generator.com/api/json/get/cbVyJWWPIi?indent=2
+var id=1;
 var users=[
   {
-    "index": 0,
+    "index":id++,
     "picture": "http://placehold.it/32x32",
     "gender": "male",
     "age": 37,
@@ -17,7 +19,7 @@ var users=[
     "isActive": true
   },
   {
-    "index": 1,
+    "index": id++,
     "picture": "http://placehold.it/32x32",
     "gender": "male",
     "age": 38,
@@ -29,9 +31,7 @@ var users=[
     "isActive": false
   },
   {
-    "index": 2,
-    "picture": "http://placehold.it/32x32",
-    "gender": "female",
+    "index": id++,
     "age": 40,
     "names": {
       "last": "Pace",
@@ -41,7 +41,7 @@ var users=[
     "isActive": true
   },
   {
-    "index": 3,
+    "index": id++,
     "picture": "http://placehold.it/32x32",
     "gender": "female",
     "age": 27,
@@ -53,7 +53,7 @@ var users=[
     "isActive": false
   },
   {
-    "index": 4,
+    "index": id++,
     "picture": "http://placehold.it/32x32",
     "gender": "male",
     "age": 39,
@@ -65,7 +65,7 @@ var users=[
     "isActive": false
   },
   {
-    "index": 5,
+    "index": id++,
     "picture": "http://placehold.it/32x32",
     "gender": "male",
     "age": 40,
@@ -78,7 +78,24 @@ var users=[
   }
 ];
 
-// Get all users
-exports.all = function(user, cb) {
-  return users;
+//constructor
+function UserList () {
+    EventEmitter.call(this);
+
 }
+util.inherits(UserList, EventEmitter);
+
+
+//Get all users
+UserList.prototype.all = function ()
+{
+  return users;
+};
+
+UserList.prototype.save=function(data)
+{
+   console.log('Saving user...');
+   this.emit("saved-user", data);
+}
+
+module.exports = UserList;
