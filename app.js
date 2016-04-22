@@ -16,8 +16,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 //middelware to load controllers
 app.use(require('./controllers'))
 
-db.connect('mongodb://developer:bridgeit@ds013908.mongolab.com:13908/sp',function(){
+db.connect('mongodb://locuraadmin:locuraadmin@ds013991.mlab.com:13991/locuranodetest',function(){
     //callback when connect success
+    console.log('connected ' + port );
+    app.listen(port);
 });
 
 db.get().connection.on('connected', function () {
