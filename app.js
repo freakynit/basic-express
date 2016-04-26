@@ -1,5 +1,6 @@
 var express = require('express')
     , app = express()
+    ,http=require('http')
     , bodyParser = require('body-parser')
     , port = process.env.PORT || 3000
     , db = require('./app/model/db')
@@ -19,11 +20,11 @@ app.use(require('./app/controllers'))
 
 db.connect(function () {
     //callback when connect success
-    app.listen(port);
+    http.createServer(app).listen(3000);
 });
 
 db.get().connection.on('connected', function () {
-    logger.info('Mongoose connected');
+    logger.info('Mongoose connected' + app.port);
 
 });
 
