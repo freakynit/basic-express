@@ -17,6 +17,7 @@
   "author": "Ashes Vats",
   "dependencies": {
     "body-parser": "^1.12.3",
+    "bunyan": "^1.8.1",
     "express": "^4.12.3",
     "jade": "^1.9.2",
     "mongoose": "4.4.10"

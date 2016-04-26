@@ -3,16 +3,15 @@ var mongoose = require('mongoose');
 var state = {
   db: null,
 }
+,url='mongodb://locuraadmin:locuraadmin@ds013991.mlab.com:13991/locuranodetest';
 
-exports.connect = function(url,cb) {
+exports.connect = function(cb) {
    if(state.db)
    {
-     console.log('db was set');
-     cb();
+
    }
   else {
     state.db=mongoose.connect(url);
-    cb();
   }
 }
 exports.lib=function(){
