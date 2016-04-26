@@ -6,7 +6,7 @@ var express = require('express')
 app.set('views', __dirname + '/views')
 app.engine('jade', require('jade').__express)
 app.set('view engine', 'jade')
-
+app.set('superSecret','#r4dew@#E#@cfdsfffwe342432CDSEWF#2fd@@@#E');
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
