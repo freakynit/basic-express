@@ -4,6 +4,7 @@ var express = require('express')
     , port = process.env.PORT || 3000
     , db = require('./app/model/db')
     , logger=require('./app/helpers/logger')
+    , router=express.Router()
 
 
 app.set('views', __dirname + 'app/views')
@@ -15,15 +16,17 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //middelware to load controllers
-app.use(require('./app/controllers'))
-
+//app.use(require('./app/controllers'))
+router.get('/',function(req,res) {
+    res.send('This is main controller');
+});
 db.connect(function () {
     //callback when connect success
     app.listen(port);
 });
 
 db.get().connection.on('connected', function () {
-    logger.info('Mongoose connected');
+    logger.info('Mongoose connected' + port);
 
 });
 
