@@ -1,5 +1,6 @@
 var express = require('express')
     , app = express()
+    ,http=require('http')
     , bodyParser = require('body-parser')
     , port = process.env.PORT || 3000
     , db = require('./app/model/db')
@@ -16,13 +17,16 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //middelware to load controllers
-//app.use(require('./app/controllers'))
+app.use(require('./app/controllers'))
+
 router.get('/',function(req,res) {
     res.send('This is main controller');
 });
 db.connect(function () {
     //callback when connect success
-    app.listen(port);
+    http.createServer(app).listen(port,function(){
+       logger.log('App started at ' + port);
+    });
 });
 
 db.get().connection.on('connected', function () {

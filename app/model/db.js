@@ -8,10 +8,11 @@ var state = {
 exports.connect = function(cb) {
    if(state.db)
    {
-
+      cb();
    }
   else {
     state.db=mongoose.connect(url);
+     cb();
   }
 }
 exports.lib=function(){
