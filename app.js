@@ -19,18 +19,13 @@ app.use(bodyParser.urlencoded({extended: true}))
 //middelware to load controllers
 app.use(require('./app/controllers'))
 
-router.get('/',function(req,res) {
-    res.send('This is main controller');
-});
 db.connect(function () {
     //callback when connect success
-    http.createServer(app).listen(port,function(){
-       logger.log('App started at ' + port);
-    });
+    http.createServer(app).listen(3000);
 });
 
 db.get().connection.on('connected', function () {
-    logger.info('Mongoose connected' + port);
+    logger.info('Mongoose connected' + app.port);
 
 });
 

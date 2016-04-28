@@ -3,7 +3,6 @@ var express=require('express')
     ,router=express.Router()
     ,jwt=require('jsonwebtoken')
 
-
 router.use('/users',require('./users'));
 
 //home page
