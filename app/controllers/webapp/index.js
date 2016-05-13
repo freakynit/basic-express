@@ -3,12 +3,12 @@ var express=require('express')
     ,router=express.Router()
     ,jwt=require('jsonwebtoken')
 
-router.use('/webapp',require('./webapp'))
-router.use('/users',require('./users'));
+router.use('/home',require('./home'))
+
 
 //home page
 router.get('/',function(req,res) {
-    res.send('This is main controller');
+    res.send('This is main controller for webapp');
 });
 
 
